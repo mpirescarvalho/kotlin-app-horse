@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_marcas">
+
+    <fragment
+        android:id="@+id/navigation_marcas"
+        android:name="com.example.myapplication.ui.marcas.MarcasFragment"
+        android:label="@string/title_marcas"
+        tools:layout="@layout/fragment_marcas" />
+
+    <fragment
+        android:id="@+id/navigation_clients"
+        android:name="com.example.myapplication.ui.clients.ClientsFragment"
+        android:label="@string/title_clients"
+        tools:layout="@layout/fragment_clients" />
+
+    <fragment
+        android:id="@+id/navigation_products"
+        android:name="com.example.myapplication.ui.products.ProductsFragment"
+        android:label="@string/title_products"
+        tools:layout="@layout/fragment_products" />
+</navigation>

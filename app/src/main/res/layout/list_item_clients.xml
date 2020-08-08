@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="client"
+            type="com.example.myapplication.models.Client" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#fff">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFF"
+            android:clipToPadding="true"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                app:backgroundActive="@{client.ativo}"
+                app:layout_constraintBottom_toBottomOf="@id/client_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/client_name"
+                tools:background="@drawable/rounded_background_grey" />
+
+            <TextView
+                android:id="@+id/client_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="#555"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"
+                android:text="@{client.pessoaFisica ? client.cliNome : client.cliFantasia}"
+                app:layout_constraintEnd_toStartOf="@+id/client_cod"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Fantasia" />
+
+            <TextView
+                android:id="@+id/client_razao_social"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textSize="12sp"
+                android:text="@{client.pessoaJuridica ? client.cliNome : ``}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/client_name"
+                tools:text="Razão Social" />
+
+            <TextView
+                android:id="@+id/client_cnpj"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="@{client.documento}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/client_city"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="000.000.000/0000-00" />
+
+            <TextView
+                android:id="@+id/client_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="@{client.cidNome}"
+                app:layout_constraintEnd_toStartOf="@+id/client_cnpj"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/client_razao_social"
+                tools:text="Irecê" />
+
+            <TextView
+                android:id="@+id/client_cod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:text="@{String.valueOf(client.cliCodigo)}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/client_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Cod" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

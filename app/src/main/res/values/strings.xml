@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_marcas">Marcas</string>
+    <string name="title_clients">Clientes</string>
+    <string name="title_products">Produtos</string>
+
+    <string name="add_marca_title">Nova marca</string>
+    <string name="update_marca_title">Nova marca</string>
+    <string name="delete_marca_title">Apagar marca</string>
+
+    <string name="confirmation_description">Tem certeza de que deseja continuar?</string>
+
+    <string name="save">Salvar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete">Apagar</string>
+
+    <string name="marca_insert_success">Marca cadastrada com sucesso</string>
+    <string name="marca_insert_fail">Falha ao cadastrar marca</string>
+
+    <string name="marca_update_success">Marca atualizada com sucesso</string>
+    <string name="marca_update_fail">Falha ao atualizar marca</string>
+
+    <string name="marca_delete_success">Marca apagada com sucesso</string>
+    <string name="marca_delete_fail">Falha ao apagar marca</string>
+</resources>

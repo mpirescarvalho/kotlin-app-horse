@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="marca"
+            type="com.example.myapplication.models.Marca" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/rounded_bg"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFF"
+            android:clipToPadding="true"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:id="@+id/marca_codigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:text="@{String.valueOf(marca.marCodigo)}"
+                app:layout_constraintBaseline_toBaselineOf="@+id/marca_descricao"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/rounded_background_grey"
+                android:textColor="#fff"
+                android:paddingVertical="1dp"
+                android:paddingHorizontal="5dp"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/marca_descricao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="#555"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:text="@{marca.marDescricao}"
+                app:layout_constraintEnd_toStartOf="@id/delete_button"
+                app:layout_constraintStart_toEndOf="@+id/marca_codigo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="Marca" />
+
+            <ImageButton
+                android:id="@+id/delete_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_delete_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/marca_descricao"
+                app:layout_constraintBottom_toBottomOf="@id/marca_descricao"
+                android:padding="5dp"
+                android:background="#0000"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>
