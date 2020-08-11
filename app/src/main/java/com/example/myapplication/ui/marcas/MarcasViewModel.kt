@@ -19,13 +19,16 @@ class MarcasViewModel(application: Application) : AndroidViewModel(application),
 
     val marcas: LiveData<List<Marca>> = _marcas
 
-    var currentPage = 0
+    private var currentPage = 0
     var maxPage: Boolean = false
 
     private suspend fun fetchNextPageAsync() = withContext(Dispatchers.IO) {
         async {
 
+//            val qMarcas = listOf<Marca>()
             val qMarcas = Service.api.marcaGetAll(currentPage + 1).await()
+
+//            val sMarcas = Service.api.marcaGetAllString(currentPage + 1).await()
 
             if (qMarcas.isEmpty()) {
                 maxPage = true

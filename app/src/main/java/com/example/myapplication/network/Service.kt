@@ -10,6 +10,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 interface ApiService {
@@ -24,8 +25,11 @@ interface ApiService {
     @GET("marca")
     fun marcaGetAll(@Query("page") page: Int = -1, @Query("page_size") pageSize: Int = 30): Deferred<List<Marca>>
 
-    @GET("marca/{id}")
-    fun marcaGetOne(@Path("id") id: Int): Deferred<Marca>
+//    @GET("marca")
+//    fun marcaGetAllString(@Query("page") page: Int = -1, @Query("page_size") pageSize: Int = 30): Deferred<String>
+
+//    @GET("marca/{id}")
+//    fun marcaGetOne(@Path("id") id: Int): Deferred<Marca>
 
     @POST ("marca")
     fun marcaInsert(@Body marca: Marca): Deferred<Response<Unit>>
@@ -46,9 +50,10 @@ object Service {
 
     // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create())
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .baseUrl("http://192.168.0.15:9000/")
+        .baseUrl("http://192.168.0.102:9000/")
         .build()
 
     val api = retrofit.create(ApiService::class.java)

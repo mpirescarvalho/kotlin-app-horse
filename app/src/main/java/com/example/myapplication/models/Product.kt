@@ -1,24 +1,24 @@
 package com.example.myapplication.models
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Product(
 
-    @Json(name = "EMP_CODIGO")
+    @SerializedName("emp_codigo")
     var empCodigo: Int,
 
-    @Json(name = "PRO_CODIGO")
+    @SerializedName("pro_codigo")
     var proCodigo: Int,
 
-    @Json(name = "SUB_DESCRICAO")
+    @SerializedName("sub_descricao")
     var subDescricao: String?,
 
-    @Json(name = "PRO_NOME")
+    @SerializedName("pro_nome")
     var proNome: String?,
 
-    @Json(name = "PRO_DESCRICAO")
+    @SerializedName("pro_descricao")
     var proDescricao: String?,
 
-    @Json(name = "PRO_PRECO_VENDA")
+    @SerializedName("pro_preco_venda")
     var proPrecoVenda: Float?
 )

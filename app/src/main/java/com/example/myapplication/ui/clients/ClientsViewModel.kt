@@ -18,7 +18,7 @@ class ClientsViewModel(application: Application) : AndroidViewModel(application)
 
     val clients: LiveData<List<Client>> = _clients
 
-    var currentPage = 0
+    private var currentPage = 0
     var maxPage: Boolean = false
 
     private suspend fun fetchNextPageAsync() = withContext(Dispatchers.IO) {

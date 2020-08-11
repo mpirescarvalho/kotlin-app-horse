@@ -18,7 +18,7 @@ class ProductsViewModel(application: Application) : AndroidViewModel(application
 
     val products: LiveData<List<Product>> = _products
 
-    var currentPage = 0
+    private var currentPage = 0
     var maxPage: Boolean = false
 
     private suspend fun fetchNextPageAsync() = withContext(Dispatchers.IO) {

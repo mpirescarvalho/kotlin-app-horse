@@ -19,7 +19,6 @@ import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentMarcasBinding
 import com.example.myapplication.models.Marca
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 
 class MarcasFragment : Fragment() {
 

@@ -1,12 +1,12 @@
 package com.example.myapplication.models
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Marca(
 
-    @Json(name = "MAR_CODIGO")
+    @SerializedName("mar_codigo")
     var marCodigo: Int = 0,
 
-    @Json(name = "MAR_DESCRICAO")
+    @SerializedName("mar_descricao")
     var marDescricao: String?
 )

@@ -1,37 +1,37 @@
 package com.example.myapplication.models
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Client(
 
-    @Json(name = "EMP_CODIGO")
+    @SerializedName("emp_codigo")
     var empCodigo: Int,
 
-    @Json(name = "CLI_CODIGO")
+    @SerializedName("cli_codigo")
     var cliCodigo: Int,
 
-    @Json(name = "CLI_NOME")
+    @SerializedName("cli_nome")
     var cliNome: String?,
 
-    @Json(name = "CLI_FANTASIA")
+    @SerializedName("cli_fantasia")
     var cliFantasia: String?,
 
-    @Json(name = "CLI_CPF")
+    @SerializedName("cli_cpf")
     var cliCpf: String?,
 
-    @Json(name = "CLI_CNPJ")
+    @SerializedName("cli_cnpj")
     var cliCnpj: String?,
 
-    @Json(name = "DOCUMENTO")
+    @SerializedName("documento")
     var documento: String?,
 
-    @Json(name = "SIT_PERMITE_VENDA")
+    @SerializedName("sit_permite_venda")
     var ativoStr: String?,
 
-    @Json(name = "CLI_PESSOA")
+    @SerializedName("cli_pessoa")
     var pessoaStr: String?,
 
-    @Json(name = "CID_NOME")
+    @SerializedName("cid_nome")
     var cidNome: String?
 ) {
     val ativo: Boolean get() = ativoStr == "S"
