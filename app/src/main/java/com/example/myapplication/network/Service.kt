@@ -4,6 +4,8 @@ import com.example.myapplication.models.Client
 import com.example.myapplication.models.Marca
 import com.example.myapplication.models.Product
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -38,15 +40,15 @@ interface ApiService {
 
 object Service {
 
-//    private val moshi = Moshi.Builder()
-//        .add(KotlinJsonAdapterFactory())
-//        .build()
+    private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
     // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .baseUrl("http://192.168.1.11:9000/")
+        .baseUrl("http://192.168.0.15:9000/")
         .build()
 
     val api = retrofit.create(ApiService::class.java)

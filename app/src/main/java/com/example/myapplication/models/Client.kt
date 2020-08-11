@@ -4,34 +4,34 @@ import com.squareup.moshi.Json
 
 data class Client(
 
-    @field:Json(name = "EMP_CODIGO")
+    @Json(name = "EMP_CODIGO")
     var empCodigo: Int,
 
-    @field:Json(name = "CLI_CODIGO")
+    @Json(name = "CLI_CODIGO")
     var cliCodigo: Int,
 
-    @field:Json(name = "CLI_NOME")
+    @Json(name = "CLI_NOME")
     var cliNome: String?,
 
-    @field:Json(name = "CLI_FANTASIA")
+    @Json(name = "CLI_FANTASIA")
     var cliFantasia: String?,
 
-    @field:Json(name = "CLI_CPF")
+    @Json(name = "CLI_CPF")
     var cliCpf: String?,
 
-    @field:Json(name = "CLI_CNPJ")
+    @Json(name = "CLI_CNPJ")
     var cliCnpj: String?,
 
-    @field:Json(name = "DOCUMENTO")
+    @Json(name = "DOCUMENTO")
     var documento: String?,
 
-    @field:Json(name = "SIT_PERMITE_VENDA")
+    @Json(name = "SIT_PERMITE_VENDA")
     var ativoStr: String?,
 
-    @field:Json(name = "CLI_PESSOA")
+    @Json(name = "CLI_PESSOA")
     var pessoaStr: String?,
 
-    @field:Json(name = "CID_NOME")
+    @Json(name = "CID_NOME")
     var cidNome: String?
 ) {
     val ativo: Boolean get() = ativoStr == "S"
