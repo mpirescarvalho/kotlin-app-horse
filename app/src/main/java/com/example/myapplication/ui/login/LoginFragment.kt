@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentLoginBinding
+import com.example.myapplication.util.Memoria
 
 
 class LoginFragment : Fragment() {
@@ -40,6 +41,7 @@ class LoginFragment : Fragment() {
             } else {
               viewModel.login(username, password) { success, error ->
                   if (success) {
+                      Memoria.persistSession(requireContext())
                       val intent = Intent(activity, MainActivity::class.java)
                       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TASK)
                       startActivity(intent)

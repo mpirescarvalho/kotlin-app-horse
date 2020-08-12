@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="preference_file_key">test01920390123</string>
+
     <string name="title_marcas">Marcas</string>
     <string name="title_clients">Clientes</string>
     <string name="title_products">Produtos</string>
