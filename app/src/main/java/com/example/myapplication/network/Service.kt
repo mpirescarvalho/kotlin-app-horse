@@ -3,17 +3,22 @@ package com.example.myapplication.network
 import com.example.myapplication.models.Client
 import com.example.myapplication.models.Marca
 import com.example.myapplication.models.Product
+import com.example.myapplication.network.dto.SessionPost
+import com.example.myapplication.network.dto.SessionResponse
+import com.example.myapplication.util.Memoria
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
+import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 interface ApiService {
+
+    //Session
+    @POST("session")
+    fun createSession(@Body body: SessionPost): Deferred<Response<SessionResponse>>
 
     @GET("clientes")
     fun clientGetAll(@Query("page") page: Int = -1, @Query("page_size") pageSize: Int = 30): Deferred<List<Client>>
@@ -44,16 +49,25 @@ interface ApiService {
 
 object Service {
 
-    private val moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
+    val httpClient = OkHttpClient.Builder()
+
+    init {
+        httpClient.addInterceptor { chain ->
+            val request = chain
+                .request()
+                .newBuilder()
+                .addHeader("Authorization", "Bearer ${Memoria.session?.token}")
+                .build()
+            chain.proceed(request)
+        }
+    }
 
     // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .baseUrl("http://192.168.0.102:9000/")
+        .baseUrl("http://192.168.0.15:9000/")
+        .client(httpClient.build())
         .build()
 
     val api = retrofit.create(ApiService::class.java)

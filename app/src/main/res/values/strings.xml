@@ -22,4 +22,6 @@
 
     <string name="marca_delete_success">Marca apagada com sucesso</string>
     <string name="marca_delete_fail">Falha ao apagar marca</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
