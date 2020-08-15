@@ -1,12 +1,9 @@
 package com.example.myapplication
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -30,6 +27,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_marcas, R.id.navigation_clients, R.id.navigation_products))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            if (destination.label == "Clientes") {
+                supportActionBar?.elevation = 0F
+            } else {
+                supportActionBar?.elevation = 8F
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
