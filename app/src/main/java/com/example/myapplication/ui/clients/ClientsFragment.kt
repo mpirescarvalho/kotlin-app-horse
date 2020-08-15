@@ -1,18 +1,25 @@
 package com.example.myapplication.ui.clients
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.myapplication.databinding.FragmentClientsBinding
+import com.example.myapplication.util.debounce
 import kotlinx.android.synthetic.main.fragment_clients.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 
 class ClientsFragment : Fragment() {
 
@@ -65,8 +72,13 @@ class ClientsFragment : Fragment() {
             viewModel.setFilters(viewModel.clientFilters.value!!.copy(somenteIrece = isChecked))
         }
 
-        binding.btnPesquisar.setOnClickListener {
+        val pesquisaChange: (String) -> Unit = debounce(300L, viewLifecycleOwner.lifecycleScope) {
             viewModel.setFilters(viewModel.clientFilters.value!!.copy(query = binding.pesquisar.text.toString()))
+            Log.v("Testando", "ABC")
+        }
+
+        binding.pesquisar.addTextChangedListener {
+            pesquisaChange(it.toString())
         }
 
         checkFetch()
@@ -99,6 +111,5 @@ class ClientsFragment : Fragment() {
         val scrolledOutItems = manager.findFirstVisibleItemPosition()
 
         return !viewModel.maxPage && !isFetching && (currentItems + scrolledOutItems >= (totalItems - threshold))
-
     }
 }

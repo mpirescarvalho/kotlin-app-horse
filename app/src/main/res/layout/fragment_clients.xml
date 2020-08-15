@@ -13,16 +13,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Pesquisar"
-            app:layout_constraintEnd_toStartOf="@+id/btnPesquisar"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnPesquisar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <CheckBox
             android:id="@+id/cbAtivo"

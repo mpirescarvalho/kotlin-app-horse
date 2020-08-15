@@ -6,6 +6,10 @@ import android.provider.Settings
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types.newParameterizedType
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @SuppressLint("HardwareIds")
 fun getAndroidID(context: Context): String {
@@ -44,4 +48,19 @@ inline fun <reified T: Any> String.toModel(): T? {
     val moshi: Moshi = Moshi.Builder().build()
     val adapter: JsonAdapter<T> = moshi.adapter<T>(T::class.java)
     return adapter.fromJson(this)
+}
+
+fun <T> debounce(
+    waitMs: Long = 300L,
+    coroutineScope: CoroutineScope,
+    destinationFunction: (T) -> Unit
+): (T) -> Unit {
+    var debounceJob: Job? = null
+    return { param: T ->
+        debounceJob?.cancel()
+        debounceJob = coroutineScope.launch {
+            delay(waitMs)
+            destinationFunction(param)
+        }
+    }
 }
