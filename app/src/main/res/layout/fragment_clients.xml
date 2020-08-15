@@ -3,25 +3,72 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.clients.ClientsFragment">
 
+        <EditText
+            android:id="@+id/pesquisar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Pesquisar"
+            app:layout_constraintEnd_toStartOf="@+id/btnPesquisar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnPesquisar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <CheckBox
+            android:id="@+id/cbAtivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Somente Ativo"
+            app:layout_constraintTop_toBottomOf="@id/pesquisar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <CheckBox
+            android:id="@+id/cbFisica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Somente Pessoa Física"
+            app:layout_constraintTop_toBottomOf="@id/cbAtivo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <CheckBox
+            android:id="@+id/cbIrece"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Somente Irecê"
+            app:layout_constraintTop_toBottomOf="@id/cbFisica"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbIrece"
+            android:layout_marginTop="20dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_clients"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:background="#f8f8f8"
-                tools:itemCount="25"
-                tools:listitem="@layout/list_item_clients" />
+                android:background="#E5ECEE"
+                tools:listitem="@layout/list_item_clients">
+            </androidx.recyclerview.widget.RecyclerView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

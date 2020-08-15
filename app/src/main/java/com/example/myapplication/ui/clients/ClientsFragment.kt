@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.myapplication.databinding.FragmentClientsBinding
+import kotlinx.android.synthetic.main.fragment_clients.*
 
 class ClientsFragment : Fragment() {
 
@@ -51,6 +52,22 @@ class ClientsFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
+
+        binding.cbAtivo.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.setFilters(viewModel.clientFilters.value!!.copy(somenteAtivo = isChecked))
+        }
+
+        binding.cbFisica.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.setFilters(viewModel.clientFilters.value!!.copy(somentePessoaFisica = isChecked))
+        }
+
+        binding.cbIrece.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.setFilters(viewModel.clientFilters.value!!.copy(somenteIrece = isChecked))
+        }
+
+        binding.btnPesquisar.setOnClickListener {
+            viewModel.setFilters(viewModel.clientFilters.value!!.copy(query = binding.pesquisar.text.toString()))
+        }
 
         checkFetch()
 

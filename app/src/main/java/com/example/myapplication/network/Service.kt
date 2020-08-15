@@ -21,7 +21,7 @@ interface ApiService {
     fun createSession(@Body body: SessionPost): Deferred<Response<SessionResponse>>
 
     @GET("clientes")
-    fun clientGetAll(@Query("page") page: Int = -1, @Query("page_size") pageSize: Int = 30): Deferred<List<Client>>
+    fun clientGetAll(@Query("where") where: String? = null, @Query("page") page: Int = -1, @Query("page_size") pageSize: Int = 30): Deferred<List<Client>>
 
     @GET("produtos")
     fun productGetAll(@Query("page") page: Int = -1, @Query("page_size") pageSize: Int = 30): Deferred<List<Product>>
