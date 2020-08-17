@@ -1,5 +1,6 @@
 package com.example.myapplication.models
 
+import com.example.myapplication.util.Memoria
 import com.google.gson.annotations.SerializedName
 
 data class Product(
@@ -21,4 +22,6 @@ data class Product(
 
     @SerializedName("pro_preco_venda")
     var proPrecoVenda: Float?
-)
+) {
+    val imgUrl: String get() = "${Memoria.APP_URL}imagens/${proCodigo}"
+}

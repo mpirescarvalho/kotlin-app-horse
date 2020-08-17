@@ -1,22 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="product"
             type="com.example.myapplication.models.Product" />
     </data>
-    
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="65dp">
 
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_gravity="start|center_vertical"
+            app:imageUrl="@{product.imgUrl}"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="77dp"
+            android:layout_marginBottom="10dp"
+            android:text="@{String.valueOf(product.proCodigo)}"
+            android:textAlignment="textStart"
+            tools:text="102" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="77dp"
+            android:layout_marginTop="10dp"
             android:text="@{product.proNome}"
-            />
+            android:textAlignment="textStart"
+            tools:text="Produto1" />
 
     </FrameLayout>
 </layout>

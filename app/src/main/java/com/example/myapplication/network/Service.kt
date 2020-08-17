@@ -66,7 +66,7 @@ object Service {
     private val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .baseUrl("http://192.168.0.15:9000/")
+        .baseUrl(Memoria.APP_URL)
         .client(httpClient.build())
         .build()
 
