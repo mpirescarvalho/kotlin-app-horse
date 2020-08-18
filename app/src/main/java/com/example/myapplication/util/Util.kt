@@ -2,7 +2,12 @@ package com.example.myapplication.util
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.provider.Settings
+import androidx.annotation.RequiresApi
+import com.example.myapplication.App
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types.newParameterizedType
@@ -63,4 +68,31 @@ fun <T> debounce(
             destinationFunction(param)
         }
     }
+}
+
+fun internetDisponivel(): Boolean {
+    val connectivityManager =
+        App.appContext!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+    val capabilities =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        } else {
+            return true
+        }
+
+    if (capabilities != null) {
+        when {
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                return true
+            }
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                return true
+            }
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                return true
+            }
+        }
+    }
+    return false
 }

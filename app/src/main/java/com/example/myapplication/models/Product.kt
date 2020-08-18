@@ -23,5 +23,5 @@ data class Product(
     @SerializedName("pro_preco_venda")
     var proPrecoVenda: Float?
 ) {
-    val imgUrl: String get() = "${Memoria.APP_URL}imagens/${proCodigo}"
+    val imgUrl: String get() = "${Memoria.API_URL}imagens/${proCodigo}"
 }

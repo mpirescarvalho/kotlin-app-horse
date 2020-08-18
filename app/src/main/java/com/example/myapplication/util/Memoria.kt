@@ -6,7 +6,7 @@ import com.example.myapplication.network.dto.SessionResponse
 import com.google.gson.Gson
 
 object Memoria {
-    var APP_URL = "http://192.168.0.15:9000/"
+    var API_URL = "http://192.168.0.15:9000/"
 
     var session: SessionResponse? = null
 

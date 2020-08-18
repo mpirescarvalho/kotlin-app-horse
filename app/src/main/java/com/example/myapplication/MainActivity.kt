@@ -2,8 +2,10 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -11,7 +13,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.brouding.simpledialog.SimpleDialog
+import com.brouding.simpledialog.builder.Custom
+import com.brouding.simpledialog.extra.BtnAction
+import com.example.myapplication.models.Marca
+import com.example.myapplication.network.Service
 import com.example.myapplication.util.Memoria
+import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,6 +58,28 @@ class MainActivity : AppCompatActivity() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
                 ActivityCompat.finishAffinity(this)
+                true
+            }
+            R.id.action_server -> {
+                val view = LayoutInflater.from(this).inflate(R.layout.simple_input, null)
+                val input = view.findViewById<TextInputEditText>(R.id.input)
+                input.hint = "Servidor"
+
+                input.setText(Memoria.API_URL)
+
+                SimpleDialog(Custom(this)
+                    .applyGeneral {
+                        setTitle("Servidor")
+                        setBtnConfirmText(context.getString(R.string.save))
+                        setBtnCancelText(context.getString(R.string.cancel))
+                    }
+                    .onBtnAction {
+                        if (it == BtnAction.CONFIRM) {
+                            Memoria.API_URL = input.text.toString()
+                        }
+                    }
+                    .setCustomView(view)
+                ).show()
                 true
             }
             else -> false
