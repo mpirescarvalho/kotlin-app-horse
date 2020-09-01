@@ -96,3 +96,4 @@ fun internetDisponivel(): Boolean {
     }
     return false
 }
+
